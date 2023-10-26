@@ -3,6 +3,10 @@ import { Form } from "@remix-run/react";
 export default function Index() {
   return (
     <div className="h-screen flex flex-col">
+      <div className="text-center p-10 pb-5 text-4xl tracking-wide font-semibold">
+        <span className="text-primary-200/50">Chat</span>
+        <span className="pl-2">💿</span>
+      </div>
       <div className="flex-1 overflow-y-auto text-2xl text-white mb-16">
         <Message text="Never gonna give you up" />
         <Message text="Never gonna let you down" />
