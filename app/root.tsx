@@ -27,7 +27,8 @@ export default function App() {
       </head>
       <body
         style={{
-          fontFamily: "Clash Grotesk Variable",
+          fontFamily:
+            "ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji",
         }}
       >
         <Outlet />

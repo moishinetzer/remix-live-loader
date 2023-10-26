@@ -1,7 +1,9 @@
 import type { DataFunctionArgs } from "@remix-run/node";
-import { useFetcher, useLoaderData } from "@remix-run/react";
+import { useFetcher } from "@remix-run/react";
 import { useState } from "react";
 import { db } from "~/utils/db.server";
+import { emitter } from "~/utils/emitter.server";
+import { useLiveLoader } from "~/utils/use-live-loader";
 
 export async function action({ request, params }: DataFunctionArgs) {
   let formData = await request.formData();
@@ -17,6 +19,8 @@ export async function action({ request, params }: DataFunctionArgs) {
     action,
     listSlug: params.listSlug!,
   });
+
+  emitter.emit(params.listSlug!);
 
   return null;
 }
@@ -37,7 +41,7 @@ export async function loader({ params }: DataFunctionArgs) {
 }
 
 export default function Index() {
-  let { list, todos, time } = useLoaderData<typeof loader>();
+  let { list, todos, time } = useLiveLoader<typeof loader>();
 
   return (
     <div className="text-4xl p-16 text-primary-100" key={time}>

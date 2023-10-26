@@ -1,6 +1,41 @@
+import { json, type ActionFunctionArgs } from "@remix-run/node";
 import { Form } from "@remix-run/react";
+import { db } from "~/utils/db.server";
+import { emitter } from "~/utils/emitter.server";
+import { useLiveLoader } from "~/utils/use-live-loader";
+
+export async function action({ request }: ActionFunctionArgs) {
+  const formData = await request.formData();
+
+  const message = formData.get("message");
+  if (!message || typeof message !== "string") {
+    throw new Error("you messed up, it's not my fault");
+  }
+
+  await db.message.create({
+    data: {
+      message,
+    },
+  });
+
+  emitter.emit("chat");
+
+  return null;
+}
+
+export async function loader() {
+  const messages = await db.message.findMany({
+    orderBy: {
+      createdAt: "asc",
+    },
+  });
+
+  return json({ messages });
+}
 
 export default function Index() {
+  const { messages } = useLiveLoader<typeof loader>();
+
   return (
     <div className="h-screen flex flex-col">
       <div className="text-center p-8 text-4xl tracking-wide font-semibold">
@@ -10,10 +45,9 @@ export default function Index() {
         <span className="pl-2">💿</span>
       </div>
       <div className="flex-1 overflow-y-auto text-2xl text-white mb-16">
-        <Message text="Never gonna give you up" />
-        <Message text="Never gonna let you down" />
-        <Message text="Never gonna run around" />
-        <Message text="And desert you." />
+        {messages.map(({ id, message }) => (
+          <Message key={id} text={message} />
+        ))}
       </div>
       <div className="fixed bottom-0 w-full h-40 from-transparent to-secondary-800 bg-gradient-to-b pointer-events-none" />
 
@@ -23,6 +57,7 @@ export default function Index() {
             <input
               className="w-full text-xl bg-transparent text-white placeholder-white/60 border-transparent focus:border-transparent focus:ring-0"
               type="text"
+              name="message"
               placeholder="Send a message"
             />
 

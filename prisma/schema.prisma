@@ -6,12 +6,12 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
 model TodoList {
-  id        String   @id @default(uuid()) @db.Uuid
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   slug      String   @unique
@@ -20,11 +20,17 @@ model TodoList {
 }
 
 model Todo {
-  id        String   @id @default(uuid()) @db.Uuid
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   title     String
   completed Boolean  @default(false)
   list      TodoList @relation(fields: [listId], references: [id])
-  listId    String   @db.Uuid
+  listId    String
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  message   String
+  createdAt DateTime @default(now())
 }
