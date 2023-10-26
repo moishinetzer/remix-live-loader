@@ -43,5 +43,12 @@ export default function Index() {
 }
 
 function Message({ text }: { text: string }) {
-  return <div className="even:bg-white/5 px-10 py-5">{text}</div>;
+  return (
+    <div className="flex justify-start items-start group gap-4 even:bg-white/5 px-10 py-5">
+      <div className="w-8 h-8 bg-primary-600 group-even:bg-secondary-900 rounded flex items-center justify-center">
+        {text[0].toUpperCase()}
+      </div>
+      <div>{text}</div>
+    </div>
+  );
 }
