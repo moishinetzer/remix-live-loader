@@ -1,14 +1,7 @@
 import type { DataFunctionArgs } from "@remix-run/node";
-import {
-  useFetcher,
-  useLoaderData,
-  useResolvedPath,
-  useRevalidator,
-} from "@remix-run/react";
-import { useEffect, useState } from "react";
-import { useEventSource } from "remix-utils/sse/react";
+import { useFetcher, useLoaderData } from "@remix-run/react";
+import { useState } from "react";
 import { db } from "~/utils/db.server";
-import { emitter } from "~/utils/emitter.server";
 
 export async function action({ request, params }: DataFunctionArgs) {
   let formData = await request.formData();
@@ -24,8 +17,6 @@ export async function action({ request, params }: DataFunctionArgs) {
     action,
     listSlug: params.listSlug!,
   });
-
-  emitter.emit(params.listSlug!);
 
   return null;
 }
@@ -45,20 +36,8 @@ export async function loader({ params }: DataFunctionArgs) {
   return { list, todos, time: Date.now() };
 }
 
-function useLiveData<T>() {
-  let currentRoute = useResolvedPath("");
-  let data = useEventSource(currentRoute.pathname + "/stream");
-
-  let { revalidate } = useRevalidator();
-  useEffect(() => {
-    revalidate();
-  }, [data, revalidate]);
-
-  return useLoaderData<T>();
-}
-
 export default function Index() {
-  let { list, todos, time } = useLiveData<typeof loader>();
+  let { list, todos, time } = useLoaderData<typeof loader>();
 
   return (
     <div className="text-4xl p-16 text-primary-100" key={time}>
