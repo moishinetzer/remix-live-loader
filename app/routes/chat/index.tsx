@@ -4,17 +4,10 @@ export default function Index() {
   return (
     <div className="h-screen flex flex-col">
       <div className="flex-1 overflow-y-auto text-2xl text-white mb-16">
-        <Message text="Hey how are you?" />
-        <Message text="I'm good, how are you?" />
-        <Message text="I'm good, how are you?" />
-        <Message text="I'm good, how are you?" />
-        <Message text="I'm good, how are you?" />
-        <Message text="I'm good, how are you?" />
-        <Message text="I'm good, how are you?" />
-        <Message text="I'm good, how are you?" />
-        <Message text="I'm good, how are you?" />
-        <Message text="I'm good, how are you?" />
-        <Message text="I'm good, how are you?" />
+        <Message text="Never gonna give you up" />
+        <Message text="Never gonna let you down" />
+        <Message text="Never gonna run around" />
+        <Message text="And desert you." />
       </div>
       <div className="fixed bottom-0 w-full h-40 from-transparent to-secondary-800 bg-gradient-to-b pointer-events-none" />
 
@@ -46,7 +39,7 @@ function Message({ text }: { text: string }) {
   return (
     <div className="w-full even:bg-white/5">
       <div className="flex justify-start items-start group gap-4 px-10 py-5 max-w-4xl mx-auto">
-        <div className="w-8 h-8 bg-primary-600 group-even:bg-secondary-900 rounded flex items-center justify-center max-w-4xl">
+        <div className="w-8 h-8 flex-shrink-0 bg-primary-600 group-even:bg-secondary-900 rounded flex items-center justify-center max-w-4xl">
           {text[0].toUpperCase()}
         </div>
         <div>{text}</div>
