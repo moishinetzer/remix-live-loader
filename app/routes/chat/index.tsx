@@ -19,7 +19,7 @@ export default function Index() {
       <div className="fixed bottom-0 w-full h-40 from-transparent to-secondary-800 bg-gradient-to-b pointer-events-none" />
 
       <Form method="POST">
-        <div className="fixed bottom-0 px-4 pb-4 w-full">
+        <div className="fixed bottom-0 left-0 right-0 px-4 pb-4 w-full max-w-4xl mx-auto">
           <div className="flex flex-row rounded-lg justify-between items-center bg-white/25 px-4">
             <input
               className="w-full text-xl bg-transparent text-white placeholder-white/60 border-transparent focus:border-transparent focus:ring-0"
@@ -44,11 +44,13 @@ export default function Index() {
 
 function Message({ text }: { text: string }) {
   return (
-    <div className="flex justify-start items-start group gap-4 even:bg-white/5 px-10 py-5">
-      <div className="w-8 h-8 bg-primary-600 group-even:bg-secondary-900 rounded flex items-center justify-center">
-        {text[0].toUpperCase()}
+    <div className="w-full even:bg-white/5">
+      <div className="flex justify-start items-start group gap-4 px-10 py-5 max-w-4xl mx-auto">
+        <div className="w-8 h-8 bg-primary-600 group-even:bg-secondary-900 rounded flex items-center justify-center max-w-4xl">
+          {text[0].toUpperCase()}
+        </div>
+        <div>{text}</div>
       </div>
-      <div>{text}</div>
     </div>
   );
 }
