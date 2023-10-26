@@ -3,7 +3,7 @@ import { Form } from "@remix-run/react";
 export default function Index() {
   return (
     <div className="h-screen flex flex-col">
-      <div className="text-center p-10 pb-5 text-4xl tracking-wide font-semibold">
+      <div className="text-center p-8 text-4xl tracking-wide font-semibold">
         <span className="bg-primary-400/50 rounded-md p-1 text-secondary-800">
           Chat
         </span>
@@ -43,7 +43,7 @@ export default function Index() {
 
 function Message({ text }: { text: string }) {
   return (
-    <div className="w-full even:bg-white/5">
+    <div className="w-full odd:bg-white/5">
       <div className="flex justify-start items-start group gap-4 px-10 py-5 max-w-4xl mx-auto">
         <div className="w-8 h-8 flex-shrink-0 bg-primary-600 group-even:bg-secondary-900 rounded flex items-center justify-center max-w-4xl">
           {text[0].toUpperCase()}
