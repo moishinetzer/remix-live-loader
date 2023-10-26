@@ -4,7 +4,9 @@ export default function Index() {
   return (
     <div className="h-screen flex flex-col">
       <div className="text-center p-10 pb-5 text-4xl tracking-wide font-semibold">
-        <span className="text-primary-200/50">Chat</span>
+        <span className="bg-primary-400/50 rounded-md p-1 text-secondary-800">
+          Chat
+        </span>
         <span className="pl-2">💿</span>
       </div>
       <div className="flex-1 overflow-y-auto text-2xl text-white mb-16">
