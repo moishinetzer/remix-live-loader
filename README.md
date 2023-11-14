@@ -6,7 +6,7 @@ This repo demonstrates how to use Server-Sent Events to invalidate data on other
 
 For the best demo of this repo, how it was implemented, and how to use it, I highly recommend watching the following video:
 
-[Server-Sent Events in Remix](https://www.youtube.com/watch?v=Dz7B7B_I6d4)
+[Server-Sent Events in Remix](https://www.youtube.com/watch?v=_7yJEC124jM)
 
 ## Getting Started
 
